@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="description" content="HTML5 slide template" />
+    <meta name="author" content="pfleidi" />
+
+    <link href="styles/prettify.css" type="text/css" rel="stylesheet" />
+    <link href="styles/base.css" type="text/css" rel="stylesheet" title="Default" /> 
+
+    <title>Realtime Web Applications</title>
+    <style TYPE="text/css">
+    <!--
+
+    #chat {
+      width: 400px;
+      height: 400px;
+      font-size : 1.3em;
+      z-index: 23;
+      border: 1px solid #666;
+      background: #333333;
+    }
+
+    #chatfield {
+      overflow: auto;
+      opacity : 0.8;
+      height: 350px; 
+      width: 100%;
+    }
+
+    #chatInput {
+      width: 300px;
+      margin-left: 5px;
+      font-size : 0.8em;
+    }
+
+    #chatbutton {
+      width : 80px;
+      text-align: center;
+    }
+
+    -->
+    </style>
+  </head>
+
+  <!--
+  ************************************
+  *        HTML: SLIDES              *
+  ************************************
+  -->
+
+  <body>
+
+  <div id="boxwrapper">
+
+  <section>
+  <h1>Realtime Web</h1>
+  <img alt="realtime" src="images/realtime.jpg" />
+  <h2>pfleidi aka "der mit dem ..."</h2>
+  </section>
+
+  <section>
+  <h1>Realtime Web?</h1>
+  <img alt="nyan tron" src="images/nyan_tron.gif" height="500" />
+  </section>
+
+  <section>
+  <h1>Well ... <b>soft</b> realtime</h1>
+  <img alt="kittens" src="images/kittens_kit.jpg" height="450" />
+  </section>
+
+  <section>
+  <h1>Hipster technology?</h1>
+  <img alt="hipster dog" src="images/r1gx6.jpg" height="500" />
+  </section>
+
+  <section>
+  <h1>Nah. Fun stuff!</h1>
+  <img alt="pleasures" src="images/pleasures.jpg" height="500" />
+  </section>
+
+  <section>
+  <h1>For teh lulz!</h1>
+  <img alt="for teh lulz" src="images/the_lulz.jpeg" height="500" />
+  </section>
+
+  <section>
+  <h1>Instant updates!</h1>
+  <p>Without having to reload websites!</p>
+  <img alt="y u want reaload" src="images/y_u_reload.png" height="450" />
+  </section>
+
+  <section>
+  <h1>Connecting users!</h1>
+  <ul>
+    <li>Collaboration</li>
+    <li>Chat</li>
+    <li>Games</li>
+    <li>Business (Monitoring)</li>
+    <li>...</li>
+  </ul>
+  </section>
+
+  <section>
+  <h1>Examples</h1>
+  <ul>
+    <li>Google Docs</li>
+    <li>Gmail</li>
+    <li>Facebook Chat</li>
+    <li>Etherpad</li>
+    <li>WebGL Quake2 clone</li>
+  </ul>
+  </section>
+
+  <section>
+  <h1>Another example:<br />This presentation</h1>
+  <h2>http://roothausen.de:8080/</h2>
+  </section>
+
+  <section>
+  <h1>Join the party ...</h1>
+  <img alt="y u want reaload" src="images/fail_train.jpeg" height="450" />
+  </section>
+
+  <section>
+  <h1>Demo chat</h1>
+  <div id="chat">
+    <div id="chatfield">
+      Welcome to the Demo Chat!<br />
+    </div>
+    <input id="chatInput" type="text" name="chatInput" />
+    <input id="chatbutton" type="button" value="send" name="chatbutton" />
+  </div>
+  </section>
+
+  <section>
+  <h1>Client side</h1>
+  <p>Example: Realtime chat</p>
+  <img alt="Tolkien" src="images/tolkien_about.jpeg" height="450" />
+  </section>
+
+  <section>
+  <h1>Ajax polling</h1>
+  <pre class="prettyprint">
+function ajaxCall() {
+  $.get('/newmessages', function onComplete(response) {
+    addNewMessagesToChat(response);
+    // polling
+    setTimeout(ajaxCall, 1000);
+  }, 'json');
+}
+  </pre>
+  </section>
+
+  <section>
+  <h1>Comet</h1>
+  <pre class="prettyprint">
+function cometCall() {
+  // get new messages from server
+  $.get('/newmessages', function (response) {
+      // instantly make new call
+      cometCall();
+      addNewMessagesToChat(response);
+    }, 'json');
+};
+  </pre>
+  </section>
+
+  <section>
+  <h1>Suboptimal .... </h1>
+  <img alt="skeptical" src="images/skeptical.jpeg" />
+  </section>
+
+  <section>
+  <h1>"But ... XHR works!"</h1>
+  <img alt="leave xhr alone" src="images/leave_xhr_alone.png" height="500" />
+  </section>
+
+  <section>
+  <h1>Yes, but</h1>
+  <ul>
+    <li>High latency</li>
+    <li>Unidirectional communication</li>
+    <li>Same-origin policy</li>
+    <li>Overhead</li>
+  </ul>
+  </section>
+
+  <section>
+  <h1>Meh ... ;(</h1>
+  <img alt="facepalm" src="images/facepalm1.jpg" />
+  </section>
+
+  <section>
+  <h1>HTML5 to the rescue!</h1>
+  <img alt="HTML5 Logo" src="images/HTML5_logo.png" />
+  </section>
+
+  <section>
+  <h1>HTML5 WebSockets</h1>
+  <ul>
+    <li>HTML5 draft</li>
+    <li>Tunneled trough HTTP</li>
+    <li>Event driven JS API</li>
+    <li>Needs support on the server side</li>
+  </ul>
+  </section>
+
+  <section>
+  <h1>WebSockets API</h1>
+  <pre class="prettyprint">
+var connection = new WebSocket(
+      'ws://socket.host.tld/chat'
+    );
+
+connection.onmessage = function (message) {
+  addNewMessagesToChat(message.data);
+};
+
+$('#sendbutton').click(function () {
+    var text = $('#chatInput').val();
+    connection.send("message: " + text);
+});
+  </pre>
+  </section>
+
+  <section>
+  <h1>Unified API?</h1>
+  <p>What about graceful degradation?</p>
+  <img alt="I got this" height="450" src="images/i_got_this.jpeg" />
+  </section>
+
+  <section>
+  <h1>Socket.io</h1>
+  <pre class="prettyprint">
+var socket = new io.Socket(hostname, {
+    port: port
+});
+socket.connect();
+
+socket.on('message', function (message) {
+  addNewMessageToChat(message);
+});
+  </pre>
+  </section>
+
+  <section>
+  <h1>Server side</h1>
+  <img alt="krebs" src="images/krebsevolution2.jpg" height="500" />
+  </section>
+
+  <section>
+  <h1>Paradigm shift</h1>
+  <ul>
+    <li>Good bye request/response paradigm</li>
+    <li>Long living TCP connections</li>
+    <li>Stateful interaction</li>
+  </ul>
+  </section>
+
+  <section>
+  <h1>Load pattern</h1>
+  <h2>High I/O and low CPU consumption</h2>
+  <img alt="problems" height="450" src="images/problems.jpg" />
+  </section>
+
+  <section>
+  <h1>How do we scale?</h1>
+  <img alt="Web scale?" src="images/hurr-durr-derp-face-one-point-twenty-one-jigowatss.jpg" />
+  </section>
+
+  <section>
+  <h1>Handling concurrency</h1>
+  <ul>
+    <li>Event Loop</li>
+    <li>Actor Model</li>
+    <li>(Coroutines)</li>
+    <li>(Threads/Processes)</li>
+  </ul>
+  </section>
+
+  <section>
+  <blockquote>[..] a folk deﬁnition of insanity is to do the same thing over and over again and to expect the results to be different. By this deﬁnition, we in fact require that programmers of multithreaded systems be insane.</blockquote>
+  <p>-- The Problem with Threads, Edward A. Lee, UC Berkeley, 2006</p>
+  </section>
+
+  <section>
+  <img alt="trollfacw" src="images/trollface.png" height="500" />
+  </section>
+
+  <section>
+  <h1>Parallelism is not concurrency</h1>
+  <p>The better solutions to this problem are lightweight and provide only high concurrency<p>
+  </section>
+
+  <section>
+  <h1>Use the right tool</h1>
+  <img alt="Haters gonna hate" src="images/haters_gonna_hate.jpeg" height="500" />
+  </section>
+
+  <section>
+  <h1>Frameworks</h1>
+  <ul>
+    <li>Node.js (JS)</li>
+    <li>Lift (Scala)</li>
+    <li>Netty (Java/JVM)</li>
+    <li>em-websocket (Ruby)</li>
+    <li>SocketTornad.IO (Python)</li>
+    <li>go-socket.io (Go)</li>
+    <li>misultin (Erlang)</li>
+  </ul>
+  </section>
+
+  <section>
+  <h1>Opportunities</h1>
+  <ul>
+    <li>Synchronisation</li>
+    <li>New collaboration software</li>
+    <li>Next generation of web based games</li>
+    <li>Uniform Client/Server Models (MVC)</li>
+  </ul>
+  </section>
+
+  <section>
+  <h1>Questions?</h1>
+  <img alt="like a ross" height="500" src="images/like_a_ross.jpg" />
+  </section>
+
+  <section>
+  <h1>Thank you!</h1>
+  <h2>Twitter</h2>
+  <a href="http://twitter.com/pfleidi">http://twitter.com/pfleidi</a>
+  <h2>Github</h2>
+  <a href="http://github.com/pfleidi">http://github.com/pfleidi</a>
+  <h2>My thesis</h2>
+  <a href="http://blog.roothausen.de/2011/03/22/my-bachelor-thesis-scale-the-realtime-web/">http://blog.roothausen.de/2011/03/22/my-bachelor-thesis-scale-the-realtime-web/</a>
+  </section>
+
+</div>
+
+<script src="js/jquery-1.6.min.js"></script>
+
+<!-- History.js polyfill lib -->
+<script src="js/history.js"></script>
+
+<!-- Load slides application -->
+<script src="js/prettify.js"></script>
+<script src="js/slippery.js?v=5"></script>
+</body>
+</html>
